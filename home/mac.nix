@@ -50,7 +50,7 @@
       home = "GH_IDENT=~/.ssh/id_rsa $SHELL";
     };
 
-    programs.git.extraConfig = {
+    programs.git.settings = {
       gpg = {
         format = "ssh";
       };

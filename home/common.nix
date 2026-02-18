@@ -175,12 +175,18 @@
 
     programs.git = {
       enable = true;
-      userEmail = "${config.common.email}";
-      userName = "${config.common.name}";
       lfs.enable = true;
-      extraConfig = {
+      settings = {
         push.autoSetupRemote = true;
         init.defaultBranch = "master";
+        user.email = "${config.common.email}";
+        user.name = "${config.common.name}";
+
+        core.pager = "delta";
+        interactive.diffFilter = "delta --color-only";
+        delta.navigate = true;
+        delta.dark = true;
+        merge.conflictstyle = "zdiff3";
       };
     };
 
@@ -191,14 +197,6 @@
         user.email = config.common.email;
         ui.editor = "hx";
       };
-    };
-
-    programs.git.extraConfig = {
-      core.pager = "delta";
-      interactive.diffFilter = "delta --color-only";
-      delta.navigate = true;
-      delta.dark = true;
-      merge.conflictstyle = "zdiff3";
     };
 
     programs.home-manager.enable = true;
