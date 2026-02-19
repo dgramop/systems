@@ -47,6 +47,7 @@
       amber
       octaveFull
       meld
+      marktext
     ];
     home.stateVersion = "25.11";
 
