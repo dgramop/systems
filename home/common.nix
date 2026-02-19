@@ -70,9 +70,7 @@
         weekend 90
         today 1;30;42'';
 
-        ".config/i3/config".text = ''
-          ${builtins.readFile ./i3.conf}
-          '';
+        ".config/i3/config".text = import ./i3.conf.nix { alacritty = pkgs.alacritty; rofi = pkgs.rofi; };
     };
 
     home.sessionVariables = {
