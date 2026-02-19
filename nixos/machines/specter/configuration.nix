@@ -75,7 +75,7 @@
     firefox
   ];
 
-  virtualization.docker.enable = true;
+  virtualisation.docker.enable = true;
   services.openssh.enable = true;
 
   # This value determines the NixOS release from which the default
