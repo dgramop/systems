@@ -59,7 +59,7 @@
   users.users.dgramop = {
     isNormalUser = true;
     description = "Dhruv Gramopadhye";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
     packages = with pkgs; [ git ];
   };
 
