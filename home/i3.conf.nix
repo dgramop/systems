@@ -48,7 +48,8 @@ bindsym $mod+Return exec ${alacritty}/bin/alacritty
 # kill focused window
 bindsym $mod+Shift+q kill
 
-bindcode $mod+40 exec "${rofi}/bin/rofi -modi drun,run -show drun"
+bindcode $mod+40 exec "${rofi}/bin/rofi -theme docu -modi drun,run -show drun"
+bindcode $mod+Shift+40 exec "${rofi}/bin/rofi -theme docu -modi ssh -show ssh -terminal ${alacritty}/bin/alacritty"
 
 # change focus
 bindsym $mod+j focus left

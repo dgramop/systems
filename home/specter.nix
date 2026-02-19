@@ -20,6 +20,11 @@
     programs.ssh = {
       enable = true;
       enableDefaultConfig = false;
+
+      # HIL config, chill
+      matchBlocks."brothernode-*" = {
+        user = "root";
+      };
     };
   };
 }
