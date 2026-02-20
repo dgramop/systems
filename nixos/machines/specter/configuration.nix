@@ -64,7 +64,7 @@
   users.users.dgramop = {
     isNormalUser = true;
     description = "Dhruv Gramopadhye";
-    extraGroups = [ "networkmanager" "wheel" "docker" "libvirtd" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" "libvirtd" "libvirt" "kvm" ];
     packages = with pkgs; [ git ];
   };
 
