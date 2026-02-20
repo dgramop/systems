@@ -64,7 +64,7 @@
   users.users.dgramop = {
     isNormalUser = true;
     description = "Dhruv Gramopadhye";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" "libvirtd" ];
     packages = with pkgs; [ git ];
   };
 
@@ -82,6 +82,15 @@
   ];
 
   virtualisation.docker.enable = true;
+  virtualisation.libvirtd = {
+    enable = true;
+    qemu = {
+      package = pkgs.qemu_kvm;
+      runAsRoot = true;
+      swtpm.enable = true;
+    };
+  };
+
   services.openssh.enable = true;
 
   # This value determines the NixOS release from which the default
