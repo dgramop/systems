@@ -48,6 +48,7 @@
       octaveFull
       meld
       marktext
+      claude-code
     ];
     home.stateVersion = "25.11";
 

@@ -52,6 +52,11 @@
     };
   };
 
+  services.logind.settings.Login = {
+    HandleLidSwitch = "ignore";
+    HandleLidSwitchDocked = "ignore";
+  };
+
   services.displayManager.defaultSession = "none+i3";
   programs.i3lock.enable = true;
 
@@ -73,6 +78,7 @@
     helix
     alacritty
     firefox
+    arandr
   ];
 
   virtualisation.docker.enable = true;
