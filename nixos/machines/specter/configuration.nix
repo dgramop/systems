@@ -14,7 +14,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "specter-dgramop-nixos"; # Define your hostname.
+  networking.hostName = "dgramop-specter-dev"; # Define your hostname.
   networking.networkmanager.enable = true;
   time.timeZone = "America/Los_Angeles";
 

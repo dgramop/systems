@@ -25,6 +25,14 @@
       matchBlocks."brothernode-*" = {
         user = "root";
       };
+      matchBlocks."192.168.10.*" = {
+        strictHostKeyChecking = "no";
+        userKnownHostsFile = "/dev/null";
+      };
+      matchBlocks."*.sitl" = {
+        strictHostKeyChecking = "no";
+        userKnownHostsFile = "/dev/null";
+      };
     };
   };
 }

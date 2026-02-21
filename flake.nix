@@ -33,7 +33,7 @@
       modules = [ ./home/specter.nix ];
     };
   }) // {
-    nixosConfigurations."specter-dgramop-nixos" = nixpkgs.lib.nixosSystem {
+    nixosConfigurations."dev.specter" = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
         ./nixos/machines/specter/configuration.nix
