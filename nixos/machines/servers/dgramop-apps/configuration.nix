@@ -6,15 +6,18 @@
     ./secrets.nix
     ./cad.nix
     ./ci.nix
+    ./checker.nix
   ];
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.grub.device = "nodev";
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nixpkgs.config.allowUnfree = true;
 
   networking.hostName = "dgramop-apps";
   time.timeZone = "America/New_York";
+
 
   services.nginx = {
     enable = true;
@@ -26,11 +29,13 @@
   };
 
   security.acme.acceptTerms = true;
+  # TODO: built from virtualhosts
   security.acme.certs = {
     "apps.dgramop.xyz".email = "dgramopadhye@gmail.com";
     "ci.apps.dgramop.xyz".email = "dgramopadhye@gmail.com";
     "secrets.apps.dgramop.xyz".email = "dgramopadhye@gmail.com";
     "cad.apps.dgramop.xyz".email = "dgramopadhye@gmail.com";
+    "checker.apps.dgramop.xyz".email = "dgramopadhye@gmail.com";
   };
 
   services.openssh = {
@@ -67,6 +72,8 @@
 
   users.mutableUsers = false;
 
+  users.groups.dgramop = {};
+  users.groups.troy = {};
   users.users.dgramop = {
     isNormalUser = true;
     group = "dgramop";
@@ -95,6 +102,5 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.05"; # Did you read the comment?
-
 }
 

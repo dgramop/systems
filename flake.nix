@@ -6,21 +6,19 @@
     home-manager.url = "github:nix-community/home-manager?ref=release-25.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
+    checker_backend.url = "github:dgramop/checker_backend";
+    checker_backend.inputs.nixpkgs.follows = "nixpkgs";
+    checker_frontend.url = "github:dgramop/checker_frontend";
+    checker_frontend.inputs.nixpkgs.follows = "nixpkgs";
+
     flake-utils.url = "github:numtide/flake-utils";
   };
 
-  outputs = {self, nixpkgs, nixpkgs-unstable, flake-utils, home-manager, ...}: flake-utils.lib.eachDefaultSystem (system: let
+  outputs = {self, nixpkgs, nixpkgs-unstable, flake-utils, home-manager, checker_backend, checker_frontend}: flake-utils.lib.eachDefaultSystem (system: let
     pkgs = import nixpkgs {
       inherit system;
       config.allowUnfree = true;
-      overlays = [(final: prev: {
-        gnuradio = pkgs-unstable.gnuradio;
-      })];
-    };
-
-    pkgs-unstable = import nixpkgs-unstable {
-      inherit system;
-      config.allowUnfree = true;
+      overlays = [self.overlays.default];
     };
   in {
     packages.homeConfigurations."mac" = home-manager.lib.homeManagerConfiguration {
@@ -46,5 +44,12 @@
         ./nixos/machines/servers/dgramop-apps/configuration.nix
       ];
     }; 
+
+    overlays.default = (final: prev: {
+      gnuradio = nixpkgs-unstable.legacyPackages.${prev.system}.gnuradio;
+      dgramop = {
+        inherit checker_backend checker_frontend;
+      };
+    });
   };
 }

@@ -47,7 +47,6 @@
       amber
       octaveFull
       meld
-      marktext
       claude-code
     ];
     home.stateVersion = "25.11";
@@ -71,8 +70,6 @@
         ".config/terminal-colors.d/cal.scheme".text = ''
         weekend 90
         today 1;30;42'';
-
-        ".config/i3/config".text = import ./i3.conf.nix { alacritty = pkgs.alacritty; rofi = pkgs.rofi; };
     };
 
     home.sessionVariables = {

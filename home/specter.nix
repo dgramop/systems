@@ -15,7 +15,10 @@
 
     home.packages = with pkgs; [
       pkg-config
+      marktext
     ];
+
+    home.file.".config/i3/config".text = import ./i3.conf.nix { alacritty = pkgs.alacritty; rofi = pkgs.rofi; };
 
     programs.ssh = {
       enable = true;
