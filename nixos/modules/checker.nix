@@ -1,5 +1,6 @@
 {config, lib, pkgs, ...}:
 {
+  services.nginx.enable = true;
   services.nginx.virtualHosts."mix.apps.dgramop.xyz" = {
     # Enable SSL/TLS
     enableACME = true;

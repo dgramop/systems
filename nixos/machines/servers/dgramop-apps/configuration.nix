@@ -3,10 +3,11 @@
   imports = [
     ./hardware-configuration.nix
 
-    ./secrets.nix
     ./cad.nix
     ./ci.nix
-    ./checker.nix
+
+    ../../../secrets.nix
+    ../../../modules/checker.nix
   ];
 
   boot.loader.systemd-boot.enable = true;

@@ -1,5 +1,6 @@
 { config, lib, pkgs, ... }:
 {
+  services.nginx.enable = true;
   services.nginx.virtualHosts."secrets.apps.dgramop.xyz" = {
     forceSSL = true;
     enableACME = true;
