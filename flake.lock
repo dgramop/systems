@@ -9,11 +9,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1771804569,
-        "narHash": "sha256-UuU91DUb/I89Hy//3NMlC2kytFfQysF2cc8q27EtUVA=",
+        "lastModified": 1771882554,
+        "narHash": "sha256-TTBdEEfQKfmDKjjDuPtFigiaU4TtSTQtUw5AjQyilfQ=",
         "owner": "dgramop",
         "repo": "checker_backend",
-        "rev": "2cb0a350e5e24539e4ce6c7beaa1cc0c656cd964",
+        "rev": "95c162de3ee38497e8c8561282eeb5381512c78a",
         "type": "github"
       },
       "original": {
