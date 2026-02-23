@@ -20,10 +20,14 @@ disko --mode disko nixos/machines/servers/dgramop-ovh/disk-config.nix
 ## Generate config
 nixos-generate-config --root /mnt
 
-Copy over configuration and hardware-configuration, OR
+At this point you should be able to nixos-install with a flake path to github?
 
+Copy over configuration and hardware-configuration, OR
 Make the following mods:
-- Add disko module to configuraiton nix
+- Add disko module tarball to configuraiton nix
+  ```
+  "${builtins.fetchTarball "https://github.com/nix-community/disko/archive/master.tar.gz"}/module.nix"
+  ```
 - Add disk-config to configuration nix
 - Add `boot.swraid.enable = true;` to configuration.nix
 - Remove disk config friom hardware-configuration, since disko is going to manage this
