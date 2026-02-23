@@ -7,11 +7,8 @@
 {
   imports = [
     ./hardware-configuration.nix
-    (modulesPath + "/installer/scan/not-detected.nix")
-    (modulesPath + "/profiles/qemu-guest.nix")
+    "${builtins.fetchTarball "https://github.com/nix-community/disko/archive/master.tar.gz"}/module.nix"
     ./disk-config.nix
-
-    ../../../modules/checker.nix
   ];
   boot.loader.grub = {
     efiSupport = true;
@@ -19,7 +16,6 @@
   };
 
   boot.swraid.enable = true;
-
   services.openssh.enable = true;
 
   environment.systemPackages = map lib.lowPrio [
