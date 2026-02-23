@@ -4,6 +4,8 @@
   ];
 
   config = {
+    home.username = "root";
+    home.homeDirectory = "/root";
     common = {
       enable = true;
       email = "dgramopadhye@gmail.com";
