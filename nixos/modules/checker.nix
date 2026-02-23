@@ -39,7 +39,7 @@
         ROCKET_ENV="prod";
         ROCKET_ADDRESS="127.0.0.1";
         ROCKET_LOG="critical";
-        ROCKET_PORT=8001;
+        ROCKET_PORT="8001";
       };
     };
   };
