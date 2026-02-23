@@ -12,6 +12,7 @@ nixos-generate-config --root /mnt
 # Add disko module to configuraiton nix
 # Add disk-config to configuration nix
 # Add   boot.swraid.enable = true; to configuration.nix
+# Remove disk config friom hardware-configuration, since disko is going to manage this
 
 # make sure to import both disk-config.nix, then copy hardware-configuration.nix back over and switch to flakified version
 nixos-install;
