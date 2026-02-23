@@ -14,6 +14,9 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nixpkgs.config.allowUnfree = true;
+
   networking.hostName = "dgramop-specter-dev"; # Define your hostname.
   networking.networkmanager.enable = true;
   time.timeZone = "America/Los_Angeles";
