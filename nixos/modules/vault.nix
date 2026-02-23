@@ -1,5 +1,9 @@
 { config, lib, pkgs, ... }:
 {
+  options = {
+    dgramop.vault.enable = lib.mkEnableOption "Enable the vault secrets engine";
+  };
+
   services.nginx.enable = true;
   services.nginx.virtualHosts."secrets.apps.dgramop.xyz" = {
     forceSSL = true;
