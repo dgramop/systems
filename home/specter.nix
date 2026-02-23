@@ -29,12 +29,16 @@
         user = "root";
       };
       matchBlocks."192.168.10.*" = {
-        strictHostKeyChecking = "no";
-        userKnownHostsFile = "/dev/null";
+        extraOptions = {
+          "StrictHostKeyChecking" = "no";
+          "UserKnownHostsFile" = "/dev/null";
+        };
       };
       matchBlocks."*.sitl" = {
-        strictHostKeyChecking = "no";
-        userKnownHostsFile = "/dev/null";
+        extraOptions = {
+          "StrictHostKeyChecking" = "no";
+          "UserKnownHostsFile" = "/dev/null";
+        };
       };
     };
   };
