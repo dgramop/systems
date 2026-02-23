@@ -71,11 +71,6 @@
     packages = with pkgs; [ git ];
   };
 
-  nix.settings.experimental-features = "nix-command flakes";
-
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-
   environment.shellAliases.vim = "${pkgs.helix}/bin/hx";
   environment.systemPackages = with pkgs; [
     helix

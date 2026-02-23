@@ -13,6 +13,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.swraid.enable = true;
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   services.openssh.enable = true;
 
