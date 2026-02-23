@@ -43,6 +43,13 @@
       modules = [
         ./nixos/machines/servers/dgramop-apps/configuration.nix
       ];
+    };
+
+    nixosConfigurations."servers.dgramop-ovh" = nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      modules = [
+        ./nixos/machines/servers/dgramop-ovh/configuration.nix
+      ];
     }; 
 
     overlays.default = (final: prev: {
