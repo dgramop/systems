@@ -8,7 +8,7 @@
     security.acme.defaults.email = "dgramopadhye@gmail.com";
     security.acme.acceptTerms = true;
     services.nginx.enable = true;
-    services.nginx.virtualHosts."dgramop.apps.dgramop.xyz" = {
+    services.nginx.virtualHosts."dgramop.xyz" = {
       # Enable SSL/TLS
       enableACME = true;
       forceSSL = true;
