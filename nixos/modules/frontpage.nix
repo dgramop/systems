@@ -1,10 +1,10 @@
 {config, lib, pkgs, ...}:
 {
   options = {
-    dgramop.dgramop.enable = lib.mkEnableOption "Enable personal website";
+    services.dgramop-frontpage.enable = lib.mkEnableOption "Enable personal website";
   };
 
-  config = lib.mkIf config.dgramop.dgramop.enable {
+  config = lib.mkIf config.services.dgramop-frontpage.enable {
     services.nginx.enable = true;
     services.nginx.virtualHosts."dgramop.apps.dgramop.xyz" = {
       # Enable SSL/TLS
