@@ -51,11 +51,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1771882194,
-        "narHash": "sha256-rvIVYCB4cIm1SKdCX87B8tiOFCO9UHzzKLEqCDYZgcA=",
+        "lastModified": 1771884180,
+        "narHash": "sha256-LdSrVRber1PhntB/7MTMyqb5qY98hHFo3WdkG782fks=",
         "owner": "dgramop",
         "repo": "dgramop",
-        "rev": "93d5b19a3de028d3f27fa455d4e0ba9b1cd517ea",
+        "rev": "0531a70a59e12c4cd99b13f328cf5f59fc759967",
         "type": "github"
       },
       "original": {
