@@ -3,6 +3,11 @@
     nixpkgs.url = "github:nixos/nixpkgs?ref=25.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs?ref=nixos-unstable";
 
+    flake-utils.url = "github:numtide/flake-utils";
+
+    disko.url = "github:nix-community/disko";
+    disko.inputs.nixpkgs.follows = "nixpkgs";
+
     home-manager.url = "github:nix-community/home-manager?ref=release-25.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -11,10 +16,9 @@
     checker_frontend.url = "github:dgramop/checker_frontend";
     checker_frontend.inputs.nixpkgs.follows = "nixpkgs";
 
-    flake-utils.url = "github:numtide/flake-utils";
   };
 
-  outputs = {self, nixpkgs, nixpkgs-unstable, flake-utils, home-manager, checker_backend, checker_frontend}: flake-utils.lib.eachDefaultSystem (system: let
+  outputs = {self, nixpkgs, nixpkgs-unstable, flake-utils, home-manager, checker_backend, checker_frontend, disko}: flake-utils.lib.eachDefaultSystem (system: let
     pkgs = import nixpkgs {
       inherit system;
       config.allowUnfree = true;
@@ -48,6 +52,7 @@
     nixosConfigurations."servers.dgramop-ovh" = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
+        disko.nixosModules.disko
         ./nixos/machines/servers/dgramop-ovh/configuration.nix
       ];
     }; 
