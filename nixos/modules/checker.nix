@@ -30,7 +30,7 @@
     };
 
     systemd.services.checker = {
-      name = "MIX Checker Backend";
+      description = "MIX Checker Backend";
       serviceConfig = {
         ExecStart = "${pkgs.dgramop.checker_backend}/bin/checker";
         WorkingDirectory = "/home/dgramop/checker";
