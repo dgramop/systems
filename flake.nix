@@ -42,7 +42,7 @@
       modules = [ ./home/generic-linux.nix ];
     };
   }) // (let
-    overlayer = {...}: { nixpkgs.overlays = [self.overlays]; };
+    overlayer = {...}: { nixpkgs.overlays = [self.overlays.default]; };
   in {
     nixosConfigurations."dev.specter" = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
