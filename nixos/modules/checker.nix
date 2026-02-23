@@ -5,6 +5,7 @@
   };
 
   config = lib.mkIf config.services.dgramop-checker.enable {
+    security.acme.defaults.email = "dgramopadhye@gmail.com";
     security.acme.acceptTerms = true;
     services.nginx.enable = true;
     services.nginx.virtualHosts."mix.apps.dgramop.xyz" = {
