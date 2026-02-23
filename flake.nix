@@ -44,6 +44,7 @@
   }) // {
     nixosConfigurations."dev.specter" = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
+      nixpkgs.overlays = self.overlays;
       modules = [
         ./nixos/machines/dev/specter/configuration.nix
       ];
@@ -51,6 +52,7 @@
 
     nixosConfigurations."servers.dgramop-apps" = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
+      nixpkgs.overlays = self.overlays;
       modules = [
         ./nixos/machines/servers/dgramop-apps/configuration.nix
       ];
@@ -58,6 +60,7 @@
 
     nixosConfigurations."servers.dgramop-ovh" = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
+      nixpkgs.overlays = self.overlays;
       modules = [
         disko.nixosModules.disko
         ./nixos/machines/servers/dgramop-ovh/configuration.nix
