@@ -36,6 +36,11 @@
       inherit pkgs;
       modules = [ ./home/specter.nix ];
     };
+
+    packages.homeConfigurations."generic-linux" = home-manager.lib.homeManagerConfiguration {
+      inherit pkgs;
+      modules = [ ./home/generic-linux.nix ];
+    };
   }) // {
     nixosConfigurations."dev.specter" = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
