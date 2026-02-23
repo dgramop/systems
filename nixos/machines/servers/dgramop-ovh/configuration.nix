@@ -16,7 +16,7 @@
   boot.loader.grub = {
     efiSupport = true;
     efiInstallAsRemovable = true;
-    boot.loader.grub.device = "/dev/md3s1";
+    device = "/dev/md3s1";
   };
   services.openssh.enable = true;
 
