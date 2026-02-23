@@ -16,8 +16,10 @@
   boot.loader.grub = {
     efiSupport = true;
     efiInstallAsRemovable = true;
-    device = "/dev/md3s1";
   };
+
+  boot.swraid.enable = true;
+
   services.openssh.enable = true;
 
   environment.systemPackages = map lib.lowPrio [

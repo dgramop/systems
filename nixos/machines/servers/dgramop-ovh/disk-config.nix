@@ -1,23 +1,56 @@
 {
   disko.devices = {
     disk = {
-      ssd-raid = {
-        device = "/dev/md3";
+      nvme0 = {
         type = "disk";
+        device = "/dev/nvme0n1";
         content = {
           type = "gpt";
           partitions = {
-            ESP = {
-              type = "EF00";
-              size = "500M";
+            boot = {
+              size = "512M";
+              type = "EF00";  # EFI partition
               content = {
                 type = "filesystem";
                 format = "vfat";
                 mountpoint = "/boot";
-                mountOptions = [ "umask=0077" ];
               };
             };
-            root = {
+            raid = {
+              size = "100%";
+              content = {
+                type = "mdraid";
+                name = "raid0";
+              };
+            };
+          };
+        };
+      };
+      nvme1 = {
+        type = "disk";
+        device = "/dev/nvme1n1";
+        content = {
+          type = "gpt";
+          partitions = {
+            raid = {
+              size = "100%";
+              content = {
+                type = "mdraid";
+                name = "raid0";
+              };
+            };
+          };
+        };
+      };
+    };
+    mdadm = {
+      raid0 = {
+        type = "mdadm";
+        level = 0;
+        content = {
+          type = "gpt";
+          partitions = {
+            primary = {
               size = "100%";
               content = {
                 type = "filesystem";
