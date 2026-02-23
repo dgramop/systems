@@ -41,27 +41,30 @@
       inherit pkgs;
       modules = [ ./home/generic-linux.nix ];
     };
-  }) // {
+  }) // (let
+    overlayer = {...}: { nixpkgs.overlays = self.overlays; };
+  in {
     nixosConfigurations."dev.specter" = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       nixpkgs.overlays = self.overlays;
       modules = [
+        overlayer
         ./nixos/machines/dev/specter/configuration.nix
       ];
     }; 
 
     nixosConfigurations."servers.dgramop-apps" = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
-      nixpkgs.overlays = self.overlays;
       modules = [
+        overlayer
         ./nixos/machines/servers/dgramop-apps/configuration.nix
       ];
     };
 
     nixosConfigurations."servers.dgramop-ovh" = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
-      nixpkgs.overlays = self.overlays;
       modules = [
+        overlayer
         disko.nixosModules.disko
         ./nixos/machines/servers/dgramop-ovh/configuration.nix
       ];
@@ -73,5 +76,5 @@
         inherit checker_backend checker_frontend dgramop_frontend;
       };
     });
-  };
+  });
 }
