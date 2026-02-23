@@ -73,9 +73,9 @@
     overlays.default = (final: prev: {
       gnuradio = nixpkgs-unstable.legacyPackages.${prev.system}.gnuradio;
       dgramop = {
-        checker_frontend = checker_frontend.outputs.packages.default;
-        checker_backend = checker_frontend.outputs.packages.default;
-        dgramop_frontend = checker_frontend.outputs.packages.default;
+        checker_frontend = checker_frontend.outputs.packages.${prev.system}.default;
+        checker_backend = checker_frontend.outputs.packages.${prev.system}.default;
+        dgramop_frontend = checker_frontend.outputs.packages.${prev.system}.default;
       };
     });
   });
