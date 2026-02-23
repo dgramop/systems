@@ -16,9 +16,11 @@
     checker_frontend.url = "github:dgramop/checker_frontend";
     checker_frontend.inputs.nixpkgs.follows = "nixpkgs";
 
+    dgramop_frontend.url = "github:dgramop/dgramop";
+    dgramop_frontend.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = {self, nixpkgs, nixpkgs-unstable, flake-utils, home-manager, checker_backend, checker_frontend, disko}: flake-utils.lib.eachDefaultSystem (system: let
+  outputs = {self, nixpkgs, nixpkgs-unstable, flake-utils, home-manager, checker_backend, checker_frontend, dgramop_frontend, disko}: flake-utils.lib.eachDefaultSystem (system: let
     pkgs = import nixpkgs {
       inherit system;
       config.allowUnfree = true;
@@ -60,7 +62,7 @@
     overlays.default = (final: prev: {
       gnuradio = nixpkgs-unstable.legacyPackages.${prev.system}.gnuradio;
       dgramop = {
-        inherit checker_backend checker_frontend;
+        inherit checker_backend checker_frontend dgramop_frontend;
       };
     });
   };

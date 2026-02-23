@@ -1,10 +1,10 @@
 {config, lib, pkgs, ...}:
 {
   options = {
-    dgramop.enable = lib.mkEnableOption "Enable the MIX check-in web app";
+    dgramop.checker.enable = lib.mkEnableOption "Enable the MIX check-in web app";
   };
 
-  config = lib.mkIf config.dgramop.enable {
+  config = lib.mkIf config.dgramop.checker.enable {
     services.nginx.enable = true;
     services.nginx.virtualHosts."mix.apps.dgramop.xyz" = {
       # Enable SSL/TLS
