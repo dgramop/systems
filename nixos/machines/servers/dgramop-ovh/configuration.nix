@@ -20,6 +20,7 @@
   environment.systemPackages = map lib.lowPrio [
     pkgs.curl
     pkgs.gitMinimal
+    pkgs.home-manager
   ];
 
   users.users.root.openssh.authorizedKeys.keys =
