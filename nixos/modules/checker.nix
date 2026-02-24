@@ -32,8 +32,10 @@
     systemd.services.checker = {
       description = "MIX Checker Backend";
       serviceConfig = {
+        User = "checker";
+        Group = "checker";
         ExecStart = "${pkgs.dgramop.checker_backend}/bin/checker";
-        WorkingDirectory = "/home/dgramop/checker";
+        WorkingDirectory = "/etc/dgramop/checker";
       };
       environment = {
         ROCKET_ENV="prod";
@@ -42,6 +44,14 @@
         ROCKET_PORT="8001";
       };
     };
+
+    users.users.checker = {
+      isSystemUser = true;
+      group = "checker";
+      home = "/etc/dgramop/checker";
+      createHome = true;
+    };
+
   };
 }
 
