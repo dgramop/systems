@@ -17,6 +17,7 @@
       pkg-config
       marktext
       slack
+      awscli2
     ];
 
     home.file.".config/i3/config".text = import ./i3.conf.nix { alacritty = pkgs.alacritty; rofi = pkgs.rofi; };
