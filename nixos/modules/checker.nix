@@ -51,7 +51,8 @@
       home = "/etc/dgramop/checker";
       createHome = true;
     };
-
+    users.groups.checker = {};
+    
   };
 }
 
