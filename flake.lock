@@ -9,11 +9,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1771804569,
-        "narHash": "sha256-UuU91DUb/I89Hy//3NMlC2kytFfQysF2cc8q27EtUVA=",
+        "lastModified": 1771882554,
+        "narHash": "sha256-TTBdEEfQKfmDKjjDuPtFigiaU4TtSTQtUw5AjQyilfQ=",
         "owner": "dgramop",
         "repo": "checker_backend",
-        "rev": "2cb0a350e5e24539e4ce6c7beaa1cc0c656cd964",
+        "rev": "95c162de3ee38497e8c8561282eeb5381512c78a",
         "type": "github"
       },
       "original": {
@@ -30,11 +30,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1771766838,
-        "narHash": "sha256-713xhf7GMuQwubkSmDBeb/eeqe3bDJk4X4SjeU2l2lM=",
+        "lastModified": 1771882167,
+        "narHash": "sha256-h0O0nZN7/prpjrLAomVTJgc1Qv4PsNdGyYmhwXTMS7k=",
         "owner": "dgramop",
         "repo": "checker_frontend",
-        "rev": "64abb0c1d3bbc2412a5859ef8561db7a029d9617",
+        "rev": "5e94bea51276cdd814c7f4a2c598066ad66f7055",
         "type": "github"
       },
       "original": {
@@ -51,11 +51,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1747627626,
-        "narHash": "sha256-LDnnUG99vDMe4GD8P429djVoNeEPpQ1SwAghY9fPv0g=",
+        "lastModified": 1771884180,
+        "narHash": "sha256-LdSrVRber1PhntB/7MTMyqb5qY98hHFo3WdkG782fks=",
         "owner": "dgramop",
         "repo": "dgramop",
-        "rev": "4a4eaa8686dd764e289cd51ba813879410be6365",
+        "rev": "0531a70a59e12c4cd99b13f328cf5f59fc759967",
         "type": "github"
       },
       "original": {

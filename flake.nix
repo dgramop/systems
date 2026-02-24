@@ -41,10 +41,14 @@
       inherit pkgs;
       modules = [ ./home/generic-linux.nix ];
     };
-  }) // {
+  }) // (let
+    overlayer = {...}: { nixpkgs.overlays = [self.overlays.default]; };
+  in {
     nixosConfigurations."dev.specter" = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
+      nixpkgs.overlays = self.overlays;
       modules = [
+        overlayer
         ./nixos/machines/dev/specter/configuration.nix
       ];
     }; 
@@ -52,6 +56,7 @@
     nixosConfigurations."servers.dgramop-apps" = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
+        overlayer
         ./nixos/machines/servers/dgramop-apps/configuration.nix
       ];
     };
@@ -59,6 +64,7 @@
     nixosConfigurations."servers.dgramop-ovh" = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
+        overlayer
         disko.nixosModules.disko
         ./nixos/machines/servers/dgramop-ovh/configuration.nix
       ];
@@ -67,8 +73,10 @@
     overlays.default = (final: prev: {
       gnuradio = nixpkgs-unstable.legacyPackages.${prev.system}.gnuradio;
       dgramop = {
-        inherit checker_backend checker_frontend dgramop_frontend;
+        checker_frontend = checker_frontend.outputs.packages.${prev.system}.default;
+        checker_backend = checker_backend.outputs.packages.${prev.system}.default;
+        dgramop_frontend = dgramop_frontend.outputs.packages.${prev.system}.default;
       };
     });
-  };
+  });
 }

@@ -8,7 +8,13 @@
   imports = [
     ./hardware-configuration.nix
     ./disk-config.nix
+
+    ../../../modules/checker.nix
+    ../../../modules/frontpage.nix
   ];
+
+  services.dgramop-checker.enable = true;
+  services.dgramop-frontpage.enable = true;
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -16,6 +22,8 @@
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   services.openssh.enable = true;
+
+  networking.firewall.allowedTCPPorts = [ 80 443 ];
 
   environment.systemPackages = map lib.lowPrio [
     pkgs.curl

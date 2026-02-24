@@ -1,12 +1,14 @@
 {config, lib, pkgs, ...}:
 {
   options = {
-    dgramop.checker.enable = lib.mkEnableOption "Enable the MIX check-in web app";
+    services.dgramop-checker.enable = lib.mkEnableOption "Enable the MIX check-in web app";
   };
 
-  config = lib.mkIf config.dgramop.checker.enable {
+  config = lib.mkIf config.services.dgramop-checker.enable {
+    security.acme.defaults.email = "dgramopadhye@gmail.com";
+    security.acme.acceptTerms = true;
     services.nginx.enable = true;
-    services.nginx.virtualHosts."mix.apps.dgramop.xyz" = {
+    services.nginx.virtualHosts."mix.dgramop.xyz" = {
       # Enable SSL/TLS
       enableACME = true;
       forceSSL = true;
@@ -28,18 +30,28 @@
     };
 
     systemd.services.checker = {
-      name = "MIX Checker Backend";
+      description = "MIX Checker Backend";
       serviceConfig = {
+        User = "checker";
+        Group = "checker";
         ExecStart = "${pkgs.dgramop.checker_backend}/bin/checker";
-        WorkingDirectory = "/home/dgramop/checker";
+        WorkingDirectory = "/etc/dgramop/checker";
       };
       environment = {
         ROCKET_ENV="prod";
         ROCKET_ADDRESS="127.0.0.1";
         ROCKET_LOG="critical";
-        ROCKET_PORT=8001;
+        ROCKET_PORT="8001";
       };
     };
+
+    users.users.checker = {
+      isSystemUser = true;
+      group = "checker";
+      home = "/etc/dgramop/checker";
+      createHome = true;
+    };
+
   };
 }
 
