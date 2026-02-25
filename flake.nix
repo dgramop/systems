@@ -46,7 +46,6 @@
   in {
     nixosConfigurations."dev.specter" = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
-      nixpkgs.overlays = self.overlays;
       modules = [
         overlayer
         ./nixos/machines/dev/specter/configuration.nix

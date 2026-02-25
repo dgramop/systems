@@ -19,6 +19,12 @@
 
   networking.hostName = "dgramop-specter-dev"; # Define your hostname.
   networking.networkmanager.enable = true;
+  networking.extraHosts = ''
+    god.sitl 192.168.100.10
+    mn.sitl 192.168.100.11
+    sn.sitl 192.168.100.12
+  '';
+
   time.timeZone = "America/Los_Angeles";
 
   i18n.defaultLocale = "en_US.UTF-8";
@@ -67,9 +73,10 @@
   users.users.dgramop = {
     isNormalUser = true;
     description = "Dhruv Gramopadhye";
-    extraGroups = [ "networkmanager" "wheel" "docker" "libvirtd" "libvirt" "kvm" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" "libvirtd" "libvirt" "kvm" "dialout" ];
     packages = with pkgs; [ git ];
   };
+  users.groups.dialout = {};
 
   environment.shellAliases.vim = "${pkgs.helix}/bin/hx";
   environment.systemPackages = with pkgs; [
