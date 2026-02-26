@@ -4,6 +4,8 @@
     services.dgramop-checker.enable = lib.mkEnableOption "Enable the MIX check-in web app";
   };
 
+  # TODO: Rocket.toml, and stubs for secrets.toml
+
   config = lib.mkIf config.services.dgramop-checker.enable {
     security.acme.defaults.email = "dgramopadhye@gmail.com";
     security.acme.acceptTerms = true;
