@@ -59,6 +59,12 @@
         i3status
       ];
     };
+
+  };
+
+  services.libinput = {
+    enable = true;
+    touchpad.tapping = false;
   };
 
   services.logind.settings.Login = {
