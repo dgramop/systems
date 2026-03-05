@@ -16,6 +16,7 @@
     home.packages = with pkgs; [
       pkg-config
       marktext
+      keymapp
       slack
       awscli2
       k9s

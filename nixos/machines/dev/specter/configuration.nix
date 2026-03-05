@@ -90,6 +90,7 @@
     alacritty
     firefox
     arandr
+    nautilus
   ];
 
   virtualisation.docker.enable = true;
