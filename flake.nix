@@ -37,6 +37,11 @@
       modules = [ ./home/specter.nix ];
     };
 
+    packages.homeConfigurations."specter-headless" = home-manager.lib.homeManagerConfiguration {
+      inherit pkgs;
+      modules = [ ./home/specter-headless.nix ];
+    };
+
     packages.homeConfigurations."generic-linux" = home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
       modules = [ ./home/generic-linux.nix ];
