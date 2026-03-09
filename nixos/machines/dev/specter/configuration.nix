@@ -15,6 +15,13 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.buildMachines = [
+    {
+      system = "x86_64-linux";
+      sshUser = "builder";
+      hostName = "nixos-builder";
+    }
+  ];
   nixpkgs.config.allowUnfree = true;
 
   networking.hostName = "dgramop-specter-dev"; # Define your hostname.
