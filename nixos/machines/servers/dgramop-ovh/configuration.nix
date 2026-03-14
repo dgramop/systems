@@ -32,6 +32,7 @@
   ];
 
   users.users.dgramop = {
+    isNormalUser = true;
     createHome = true;
     group = "users";
     extraGroups = [
