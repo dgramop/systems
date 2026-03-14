@@ -33,6 +33,7 @@
 
   users.users.dgramop = {
     createHome = true;
+    group = "users";
     extraGroups = [
       "wheel"
     ];
