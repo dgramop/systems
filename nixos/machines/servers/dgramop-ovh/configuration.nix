@@ -46,5 +46,14 @@ in
   users.users.root.openssh.authorizedKeys.keys = [ key ]; 
   users.users.dgramop.openssh.authorizedKeys.keys = [ key ]; 
 
+  virtualisation.libvirtd = {
+    enable = true;
+    qemu = {
+      package = pkgs.qemu_kvm;
+      runAsRoot = true;
+      swtpm.enable = true;
+    };
+  };
+
   system.stateVersion = "25.11";
 }
