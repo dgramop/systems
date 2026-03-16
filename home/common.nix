@@ -176,6 +176,7 @@
       lfs.enable = true;
       settings = {
         push.autoSetupRemote = true;
+        push.default = "current";
         init.defaultBranch = "master";
         user.email = "${config.common.email}";
         user.name = "${config.common.name}";
