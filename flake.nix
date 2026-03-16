@@ -18,9 +18,12 @@
 
     dgramop_frontend.url = "github:dgramop/dgramop";
     dgramop_frontend.inputs.nixpkgs.follows = "nixpkgs";
+
+    branch.url = "github:dgramop-specter/branch";
+    branch.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = {self, nixpkgs, nixpkgs-unstable, flake-utils, home-manager, checker_backend, checker_frontend, dgramop_frontend, disko}: flake-utils.lib.eachDefaultSystem (system: let
+  outputs = {self, nixpkgs, nixpkgs-unstable, flake-utils, home-manager, checker_backend, checker_frontend, dgramop_frontend, disko, branch}: flake-utils.lib.eachDefaultSystem (system: let
     pkgs = import nixpkgs {
       inherit system;
       config.allowUnfree = true;
@@ -80,6 +83,7 @@
         checker_frontend = checker_frontend.outputs.packages.${prev.system}.default;
         checker_backend = checker_backend.outputs.packages.${prev.system}.default;
         dgramop_frontend = dgramop_frontend.outputs.packages.${prev.system}.default;
+        branch = branch.outputs.packages.${prev.system}.default;
       };
     });
   });

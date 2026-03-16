@@ -48,6 +48,7 @@
       octaveFull
       meld
       claude-code
+      branch
     ];
     home.stateVersion = "25.11";
 
