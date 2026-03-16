@@ -30,6 +30,7 @@
     programs.ssh = {
       enable = true;
       enableDefaultConfig = false;
+      matchBlocks."*".user = "specter";
 
       # HIL config, chill
       matchBlocks."brothernode-*" = {
