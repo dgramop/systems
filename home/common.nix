@@ -48,7 +48,7 @@
       octaveFull
       meld
       claude-code
-      branch
+      dgramop.branch
     ];
     home.stateVersion = "25.11";
 
