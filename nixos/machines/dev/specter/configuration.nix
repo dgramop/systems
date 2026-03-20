@@ -82,7 +82,7 @@
   services.datadog-agent = {
     enable = true;
     apiKeyFile = "/var/dhruv/datadog.key";
-    site = "https://us5.datadoghq.com";
+    site = "us5.datadoghq.com";
   };
 
   services.displayManager.defaultSession = "none+i3";
