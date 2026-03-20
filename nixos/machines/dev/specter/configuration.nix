@@ -79,6 +79,11 @@
     HandleLidSwitchDocked = "ignore";
   };
 
+  services.datadog-agent = {
+    enable = true;
+    apiKeyFile = "/var/dhruv/datadog.key";
+  };
+
   services.displayManager.defaultSession = "none+i3";
   programs.i3lock.enable = true;
 
