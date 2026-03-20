@@ -1,4 +1,4 @@
-{ alacritty, rofi }: ''
+{ alacritty, rofi, flameshot }: ''
 # i3 config file (v4)
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
@@ -177,4 +177,6 @@ bindsym $mod+r mode "resize"
 bar {
         status_command i3status
 }
+
+bindsym $mod+o exec ${flameshot}/bin/flameshot gui
 ''
