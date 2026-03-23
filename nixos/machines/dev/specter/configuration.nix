@@ -84,10 +84,9 @@
     apiKeyFile = "/var/dhruv/datadog.key";
     site = "us5.datadoghq.com";
     extraConfig = {
-      tags = ["env:development"];
       use_dogstatsd = true;
-      dogstatsd_post = 8125;
-      # dogstatsd_non_local_traffic = true;
+      dogstatsd_port = 8125;
+      dogstatsd_non_local_traffic = true;
     };
  };
 
