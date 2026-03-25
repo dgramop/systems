@@ -57,6 +57,7 @@
 
     desktopManager = {
       xterm.enable = false;
+      wallpaper.mode = "fill";
     };
 
     windowManager.i3 = {
