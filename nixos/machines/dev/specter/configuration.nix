@@ -13,6 +13,9 @@
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.grub.splashImage = ../../../modules/bg.jpeg;
+  boot.plymouth.enable = true;
+  boot.plymouth.logo = ./boot.png;
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nix.buildMachines = [
@@ -47,10 +50,6 @@
     LC_TIME = "en_US.UTF-8";
   };
   services.tailscale.enable = true;
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
-  };
 
   services.xserver = {
     enable = true;
@@ -60,6 +59,8 @@
       wallpaper.mode = "fill";
     };
 
+    displayManager.lightdm.background = ../../../modules/bg.jpeg;
+
     windowManager.i3 = {
       enable = true;
       extraPackages = with pkgs; [
@@ -68,6 +69,10 @@
       ];
     };
 
+    xkb = {
+      layout = "us";
+      variant = "";
+    };
   };
 
   services.libinput = {
