@@ -8,6 +8,9 @@
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
 
+    jetpack.url = "github:anduril/jetpack-nixos/master";
+    jetpack.inputs.nixpkgs.follows = "nixpkgs";
+
     home-manager.url = "github:nix-community/home-manager?ref=release-25.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -23,7 +26,7 @@
     branch.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = {self, nixpkgs, nixpkgs-unstable, flake-utils, home-manager, checker_backend, checker_frontend, dgramop_frontend, disko, branch}: flake-utils.lib.eachDefaultSystem (system: let
+  outputs = {self, nixpkgs, nixpkgs-unstable, flake-utils, jetpack, home-manager, checker_backend, checker_frontend, dgramop_frontend, disko, branch}: flake-utils.lib.eachDefaultSystem (system: let
     pkgs = import nixpkgs {
       inherit system;
       config.allowUnfree = true;
@@ -57,6 +60,15 @@
       modules = [
         overlayer
         ./nixos/machines/dev/specter/configuration.nix
+      ];
+    };
+
+    nixosConfigurations."servers.orin" = nixpkgs.lib.nixosSystem {
+      system = "aarch64-linux";
+      modules = [
+        overlayer
+	jetpack.nixosModules.default
+        ./nixos/machines/servers/orin/configuration.nix
       ];
     }; 
 
