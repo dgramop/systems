@@ -85,10 +85,18 @@
       system = "aarch64-linux";
       modules = [
         overlayer
-	jetpack.nixosModules.default
+        jetpack.nixosModules.default
         ./nixos/machines/servers/orin/configuration.nix
       ];
     }; 
+
+    nixosConfigurations."servers.nuc" = nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      modules = [
+        overlayer
+        ./nixos/machines/servers/nuc/configuration.nix
+      ];
+    };
 
     nixosConfigurations."servers.dgramop-apps" = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
