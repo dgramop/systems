@@ -50,8 +50,26 @@
 
     packages.homeConfigurations."generic-linux" = home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
-      modules = [ ./home/generic-linux.nix ];
+      modules = [
+        ./home/generic-linux.nix
+        {
+          home.username = "root";
+          home.homeDirectory = "/root";
+        }
+      ];
     };
+
+    packages.homeConfigurations."generic-linux-dgramop" = home-manager.lib.homeManagerConfiguration {
+      inherit pkgs;
+      modules = [
+        ./home/generic-linux.nix
+        {
+          home.username = "dgramop";
+          home.homeDirectory = "/home/dgramop";
+        }
+      ];
+    };
+
   }) // (let
     overlayer = {...}: { nixpkgs.overlays = [self.overlays.default]; };
   in {
