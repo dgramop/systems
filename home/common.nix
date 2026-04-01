@@ -49,6 +49,7 @@
       meld
       claude-code
       dgramop.branch
+      picocom
     ];
     home.stateVersion = "25.11";
 
