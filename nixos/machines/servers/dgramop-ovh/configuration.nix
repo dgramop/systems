@@ -14,10 +14,12 @@ in
 
     ../../../modules/checker.nix
     ../../../modules/frontpage.nix
+    ../../../modules/null-black
   ];
 
   services.dgramop-checker.enable = true;
   services.dgramop-frontpage.enable = true;
+  services.null-black.enable = true;
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
