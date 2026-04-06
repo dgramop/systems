@@ -24,6 +24,8 @@
       _1password-gui
       flameshot
       datadog-agent
+      chromium
+      libreoffice
     ];
 
     home.file.".config/i3/config".text = import ./i3.conf.nix { alacritty = pkgs.alacritty; rofi = pkgs.rofi; flameshot = pkgs.flameshot; };
