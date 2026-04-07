@@ -12,11 +12,13 @@ in
     ./hardware-configuration.nix
     ./disk-config.nix
 
+    ../../../modules/common.nix
     ../../../modules/checker.nix
     ../../../modules/frontpage.nix
     ../../../modules/null-black
   ];
 
+  dgramop.common.enable = true;
   services.dgramop-checker.enable = true;
   services.dgramop-frontpage.enable = true;
   services.null-black.enable = true;
@@ -31,9 +33,7 @@ in
 
   networking.firewall.allowedTCPPorts = [ 80 443 ];
 
-  environment.systemPackages = map lib.lowPrio [
-    pkgs.curl
-    pkgs.gitMinimal
+  environment.systemPackages = [
     pkgs.home-manager
   ];
 

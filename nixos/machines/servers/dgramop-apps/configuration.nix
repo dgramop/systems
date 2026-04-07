@@ -7,8 +7,11 @@
     ./ci.nix
 
     ../../../secrets.nix
+    ../../../modules/common.nix
     ../../../modules/checker.nix
   ];
+
+  dgramop.common.enable = true;
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -49,25 +52,12 @@
     size = 16*1024;
   } ];
 
+  # Server-specific packages (CLI tools now in common.nix)
   environment.systemPackages = with pkgs; [
-    vim
-    wget
-    neovim
-    git
-    htop
     vault-bin
-    ncdu
-    fish
-    curl
-    htop
     python3
     wireguard-tools
-    tree
-    ripgrep
-    file
   ];
-  environment.shells = [ pkgs.fish ];
-  programs.fish.enable = true;
   
   virtualisation.docker.enable = true;
 

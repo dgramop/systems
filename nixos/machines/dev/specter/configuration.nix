@@ -5,10 +5,16 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  imports = [
+    ./hardware-configuration.nix
+    ../../../modules/common.nix
+    ../../../modules/desktop.nix
+    ../../../modules/hardware-dev.nix
+  ];
+
+  dgramop.common.enable = true;
+  dgramop.desktop.enable = true;
+  dgramop.hardware-dev.enable = true;
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -51,34 +57,9 @@
   };
   services.tailscale.enable = true;
 
-  services.xserver = {
-    enable = true;
-
-    desktopManager = {
-      xterm.enable = false;
-      wallpaper.mode = "fill";
-    };
-
-    displayManager.lightdm.background = ../../../modules/bg.jpeg;
-
-    windowManager.i3 = {
-      enable = true;
-      extraPackages = with pkgs; [
-        rofi
-        i3status
-      ];
-    };
-
-    xkb = {
-      layout = "us";
-      variant = "";
-    };
-  };
-
-  services.libinput = {
-    enable = true;
-    touchpad.tapping = false;
-  };
+  # X11, i3, audio now in desktop.nix
+  # Machine-specific libinput override
+  services.libinput.touchpad.tapping = false;
 
   services.logind.settings.Login = {
     HandleLidSwitch = "ignore";
@@ -96,26 +77,15 @@
     };
  };
 
-  services.displayManager.defaultSession = "none+i3";
-  programs.i3lock.enable = true;
+  # defaultSession and i3lock now in desktop.nix
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.dgramop = {
     isNormalUser = true;
     description = "Dhruv Gramopadhye";
     extraGroups = [ "networkmanager" "wheel" "docker" "libvirtd" "libvirt" "kvm" "dialout" ];
-    packages = with pkgs; [ git ];
   };
-  users.groups.dialout = {};
-
-  environment.shellAliases.vim = "${pkgs.helix}/bin/hx";
-  environment.systemPackages = with pkgs; [
-    helix
-    alacritty
-    firefox
-    arandr
-    nautilus
-  ];
+  # dialout group now in hardware-dev.nix
+  # CLI tools in common.nix, GUI in desktop.nix
 
   virtualisation.docker.enable = true;
   virtualisation.libvirtd = {

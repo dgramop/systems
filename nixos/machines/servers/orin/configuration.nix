@@ -5,11 +5,16 @@
 { config, lib, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      #(import ((builtins.fetchTarball "https://github.com/anduril/jetpack-nixos/archive/master.tar.gz") + "/modules/default.nix") (self: super: super))
-    ];
+  imports = [
+    ./hardware-configuration.nix
+    ../../../modules/common.nix
+    ../../../modules/desktop.nix
+    ../../../modules/hardware-dev.nix
+  ];
+
+  dgramop.common.enable = true;
+  dgramop.desktop.enable = true;
+  dgramop.hardware-dev.enable = true;
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -51,46 +56,14 @@
   #   useXkbConfig = true; # use xkb.options in tty.
   # };
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-  services.xserver.displayManager.lightdm.enable = true;
-  services.xserver.desktopManager.xfce.enable = true;
+  # X11, i3, audio now in desktop.nix
 
-  # Configure keymap in X11
-  services.xserver.xkb.layout = "us";
-  # services.xserver.xkb.options = "eurosign:e,caps:escape";
-
-  # Enable CUPS to print documents.
-  # services.printing.enable = true;
-
-  # Enable sound.
-  # services.pulseaudio.enable = true;
-  # OR
-  # services.pipewire = {
-  #   enable = true;
-  #   pulse.enable = true;
-  # };
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.libinput.enable = true;
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.dgramop = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "video" ]; # Enable ‘sudo’ for the user.
-    packages = with pkgs; [
-      tree
-    ];
+    extraGroups = [ "wheel" "video" "dialout" ];
   };
 
-  # List packages installed in system profile.
-  # You can use https://search.nixos.org/ to find more packages (and options).
-  environment.systemPackages = with pkgs; [
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    helix
-    wget
-    git
-  ];
+  # CLI tools now in common.nix, GUI in desktop.nix, serial tools in hardware-dev.nix
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
