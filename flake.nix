@@ -24,9 +24,12 @@
 
     branch.url = "github:dgramop-specter/branch";
     branch.inputs.nixpkgs.follows = "nixpkgs";
+
+    oncall.url = "github:dgramop-specter/oncall";
+    oncall.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = {self, nixpkgs, nixpkgs-unstable, flake-utils, jetpack, home-manager, checker_backend, checker_frontend, dgramop_frontend, disko, branch}: flake-utils.lib.eachDefaultSystem (system: let
+  outputs = {self, nixpkgs, nixpkgs-unstable, flake-utils, jetpack, home-manager, checker_backend, checker_frontend, dgramop_frontend, disko, branch, oncall}: flake-utils.lib.eachDefaultSystem (system: let
     pkgs = import nixpkgs {
       inherit system;
       config.allowUnfree = true;
@@ -36,16 +39,6 @@
     packages.homeConfigurations."mac" = home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
       modules = [ ./home/mac.nix ];
-    };
-
-    packages.homeConfigurations."specter" = home-manager.lib.homeManagerConfiguration {
-      inherit pkgs;
-      modules = [ ./home/specter.nix ];
-    };
-
-    packages.homeConfigurations."specter-headless" = home-manager.lib.homeManagerConfiguration {
-      inherit pkgs;
-      modules = [ ./home/specter-headless.nix ];
     };
 
     packages.homeConfigurations."generic-linux" = home-manager.lib.homeManagerConfiguration {
@@ -73,14 +66,6 @@
   }) // (let
     overlayer = {...}: { nixpkgs.overlays = [self.overlays.default]; };
   in {
-    nixosConfigurations."dev.specter" = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      modules = [
-        overlayer
-        ./nixos/machines/dev/specter/configuration.nix
-      ];
-    };
-
     nixosConfigurations."servers.orin" = nixpkgs.lib.nixosSystem {
       system = "aarch64-linux";
       modules = [
@@ -122,6 +107,7 @@
         checker_backend = checker_backend.outputs.packages.${prev.system}.default;
         dgramop_frontend = dgramop_frontend.outputs.packages.${prev.system}.default;
         branch = branch.outputs.defaultPackage.${prev.system};
+        oncall = oncall.outputs.defaultPackage.${prev.system};
       };
     });
   });
