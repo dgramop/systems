@@ -5,6 +5,8 @@
   };
 
   config = lib.mkIf config.dgramop.common.enable {
+    nix.settings.trusted-users = [ "root" "dgramop" ];
+
     environment.systemPackages = with pkgs; [
       # Version control
       git

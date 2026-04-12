@@ -27,9 +27,12 @@
 
     oncall.url = "github:dgramop-specter/oncall";
     oncall.inputs.nixpkgs.follows = "nixpkgs";
+
+    nix-darwin.url = "github:nix-darwin/nix-darwin/master";
+    nix-darwin.inputs.nixpkgs.follows = "nixpkgs-unstable";
   };
 
-  outputs = {self, nixpkgs, nixpkgs-unstable, flake-utils, jetpack, home-manager, checker_backend, checker_frontend, dgramop_frontend, disko, branch, oncall}: flake-utils.lib.eachDefaultSystem (system: let
+  outputs = {self, nixpkgs, nixpkgs-unstable, flake-utils, jetpack, home-manager, checker_backend, checker_frontend, dgramop_frontend, disko, branch, oncall, nix-darwin}: flake-utils.lib.eachDefaultSystem (system: let
     pkgs = import nixpkgs {
       inherit system;
       config.allowUnfree = true;
@@ -99,6 +102,13 @@
         ./nixos/machines/servers/dgramop-ovh/configuration.nix
       ];
     }; 
+
+    darwinConfigurations."Dhruvs-MacBook-Pro" = nix-darwin.lib.darwinSystem {
+      modules = [
+        ./darwin/configuration.nix
+      ];
+      specialArgs = { inherit self; };
+    };
 
     overlays.default = (final: prev: {
       gnuradio = nixpkgs-unstable.legacyPackages.${prev.system}.gnuradio;
