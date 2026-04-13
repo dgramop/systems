@@ -39,7 +39,7 @@
       cmake
       htop
       btop
-      # _1password-cli
+      _1password-cli
       nil
       util-linux
       julia-bin
