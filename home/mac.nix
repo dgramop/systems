@@ -31,8 +31,8 @@
       # team identifier for all 1password/agilebits applications - and isn't randomly generated per
       # install
       extraConfig = ''
-        Host btlst
-            Hostname 10.56.0.4
+        Host asahi
+            Hostname 192.168.8.218
 
         Host nuc
             Hostname 192.168.8.215
