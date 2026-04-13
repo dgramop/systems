@@ -31,14 +31,15 @@
       # team identifier for all 1password/agilebits applications - and isn't randomly generated per
       # install
       extraConfig = ''
+        Host *
+          IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+
+
         Host asahi
-            Hostname 192.168.8.218
+            Hostname 192.168.8.206
 
         Host nuc
             Hostname 192.168.8.215
-
-        Host *
-            IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
 
         Host github.com
             IdentityFile ''${GH_IDENT}
