@@ -8,7 +8,7 @@
   # This nixifies the out-of-band builder config from /etc/nix/nix.custom.conf
   environment.etc."nix/nix.custom.conf".text = ''
     trusted-users = dgramop
-    builders = ssh-ng://dgramop@asahi aarch64-linux - 8 1 big-parallel; ssh-ng://dgramop@orin aarch64-linux - 6 1 big-parallel; ssh-ng://dgramop@nuc x86_64-linux - 8 1 big-parallel;
+    builders = ssh-ng://dgramop@asahi aarch64-linux - 8 2 big-parallel; ssh-ng://dgramop@orin aarch64-linux - 6 1 big-parallel; ssh-ng://dgramop@nuc x86_64-linux - 8 1 big-parallel;
     builders-use-substitutes = true
   '';
 
