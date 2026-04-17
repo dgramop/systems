@@ -69,16 +69,16 @@
   }) // (let
     overlayer = {...}: { nixpkgs.overlays = [self.overlays.default]; };
   in {
-    nixosConfigurations."servers.orin" = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.servers.orin = nixpkgs.lib.nixosSystem {
       system = "aarch64-linux";
       modules = [
         overlayer
         jetpack.nixosModules.default
         ./nixos/machines/servers/orin/configuration.nix
       ];
-    }; 
+    };
 
-    nixosConfigurations."servers.nuc" = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.servers.nuc = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
         overlayer
@@ -86,7 +86,7 @@
       ];
     };
 
-    nixosConfigurations."servers.dgramop-apps" = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.servers.dgramop-apps = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
         overlayer
@@ -94,7 +94,7 @@
       ];
     };
 
-    nixosConfigurations."servers.dgramop-ovh" = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.servers.dgramop-ovh = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
         overlayer
