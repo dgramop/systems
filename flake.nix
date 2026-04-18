@@ -101,7 +101,26 @@
         disko.nixosModules.disko
         ./nixos/machines/servers/dgramop-ovh/configuration.nix
       ];
-    }; 
+    };
+
+    nixosConfigurations.servers.dgramop-dedi = nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      modules = [
+        overlayer
+        disko.nixosModules.disko
+        ./nixos/machines/servers/dgramop-dedi/configuration.nix
+      ];
+    };
+
+    # flat alias for nixos-anywhere / nixos-rebuild compatibility
+    nixosConfigurations.dgramop-dedi = nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      modules = [
+        overlayer
+        disko.nixosModules.disko
+        ./nixos/machines/servers/dgramop-dedi/configuration.nix
+      ];
+    };
 
     darwinConfigurations."Dhruvs-MacBook-Pro" = nix-darwin.lib.darwinSystem {
       modules = [

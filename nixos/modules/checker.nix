@@ -33,6 +33,7 @@
 
     systemd.services.checker = {
       description = "MIX Checker Backend";
+      enable = true;
       serviceConfig = {
         User = "checker";
         Group = "checker";
