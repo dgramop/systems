@@ -17,6 +17,12 @@
     pkgs.home-manager
   ];
 
+  environment.etc."resolver/lan" = {
+    text = ''
+      nameserver 10.111.3.128
+    '';
+  };
+
   # Set Git commit hash for darwin-version.
   system.configurationRevision = self.rev or self.dirtyRev or null;
 
