@@ -69,7 +69,7 @@
   }) // (let
     overlayer = {...}: { nixpkgs.overlays = [self.overlays.default]; };
   in {
-    nixosConfigurations.servers.orin = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.orin = nixpkgs.lib.nixosSystem {
       system = "aarch64-linux";
       modules = [
         overlayer
@@ -78,7 +78,7 @@
       ];
     };
 
-    nixosConfigurations.servers.nuc = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.nuc = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
         overlayer
@@ -86,7 +86,7 @@
       ];
     };
 
-    nixosConfigurations.servers.dgramop-apps = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.dgramop-apps = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
         overlayer
@@ -94,7 +94,7 @@
       ];
     };
 
-    nixosConfigurations.servers.dgramop-ovh = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.dgramop-ovh = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
         overlayer
@@ -103,16 +103,6 @@
       ];
     };
 
-    nixosConfigurations.servers.dgramop-dedi = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      modules = [
-        overlayer
-        disko.nixosModules.disko
-        ./nixos/machines/servers/dgramop-dedi/configuration.nix
-      ];
-    };
-
-    # flat alias for nixos-anywhere / nixos-rebuild compatibility
     nixosConfigurations.dgramop-dedi = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
