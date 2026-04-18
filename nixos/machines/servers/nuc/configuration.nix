@@ -82,6 +82,22 @@
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
 
+  services.dnsmasq = {
+    enable = true;
+    listen-address = "127.0.0.1,10.111.3.128";
+    bind-interfaces = true;
+
+    # Forward everything else to router
+    server = [ "192.168.8.1" ];  # your router's IP
+
+    # Override just these three
+    address = [
+      "/nuc/10.111.3.128"
+      "/asahi/10.111.3.114"
+      "/orin/10.111.3.136"
+    ];
+  };
+
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
