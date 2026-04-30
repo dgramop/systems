@@ -51,6 +51,7 @@
       dgramop.branch
       dgramop.oncall
       picocom
+      nix-tree
     ];
     home.stateVersion = "25.11";
 
