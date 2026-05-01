@@ -52,6 +52,9 @@
       dgramop.oncall
       picocom
       nix-tree
+      file
+      arping
+      binwalk
     ];
     home.stateVersion = "25.11";
 
