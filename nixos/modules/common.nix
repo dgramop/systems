@@ -45,6 +45,7 @@
 
       # Network
       nmap
+      net-tools
     ];
 
     # Shell
