@@ -23,38 +23,53 @@
 
   config = lib.mkIf config.common.enable {
     home.packages = with pkgs; [
-      rustup
-      trunk
+      # sys tools
+      util-linux
       tree
       eza
-      nmap
-      pyright
-      python313Packages.python-lsp-server
-      alacritty
-      d2
       tmux
       jq
-      gh
-      wget
-      cmake
       htop
       btop
-      _1password-cli
-      nil
-      util-linux
-      julia-bin
-      delta
-      amber
-      octaveFull
-      meld
-      claude-code
-      dgramop.branch
-      dgramop.oncall
-      picocom
-      nix-tree
+      wget
       file
+
+      # net tools
+      nmap
       arping
+      dig
+
+      # language tools
+      rustup
+      julia-bin
+      octaveFull
+      trunk
+      pyright
+      python313Packages.python-lsp-server
+      cmake
+      nil
+
+      # dev tools
+      ## dev: editing
+      alacritty
+      d2
+      claude-code
+
+      ## dev: analysis
       binwalk
+      nix-tree
+
+      ## dev: change mgmt
+      dgramop.branch
+      amber
+      meld
+      delta
+      gh
+
+      ## dev: misc
+      picocom
+      _1password-cli
+
     ];
     home.stateVersion = "25.11";
 
