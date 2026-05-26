@@ -65,6 +65,7 @@
       meld
       delta
       gh
+      graphite-cli
 
       ## dev: misc
       picocom
