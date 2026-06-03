@@ -28,11 +28,14 @@
     oncall.url = "github:dgramop-specter/oncall";
     oncall.inputs.nixpkgs.follows = "nixpkgs";
 
+    jj-spr.url = "github:jennings/jj-spr";
+    jj-spr.inputs.nixpkgs.follows = "nixpkgs";
+
     nix-darwin.url = "github:nix-darwin/nix-darwin/master";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs-unstable";
   };
 
-  outputs = {self, nixpkgs, nixpkgs-unstable, flake-utils, jetpack, home-manager, checker_backend, checker_frontend, dgramop_frontend, disko, branch, oncall, nix-darwin}: flake-utils.lib.eachDefaultSystem (system: let
+  outputs = {self, nixpkgs, nixpkgs-unstable, flake-utils, jetpack, home-manager, checker_backend, checker_frontend, dgramop_frontend, disko, branch, oncall, nix-darwin, jj-spr}: flake-utils.lib.eachDefaultSystem (system: let
     pkgs = import nixpkgs {
       inherit system;
       config.allowUnfree = true;
@@ -126,6 +129,7 @@
         checker_backend = checker_backend.outputs.packages.${prev.system}.default;
         dgramop_frontend = dgramop_frontend.outputs.packages.${prev.system}.default;
         branch = branch.outputs.defaultPackage.${prev.system};
+        jj-spr = jj-spr.outputs.defaultPackage.${prev.system};
         oncall = oncall.outputs.defaultPackage.${prev.system};
       };
     });

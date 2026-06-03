@@ -63,7 +63,6 @@
       dgramop.branch
       amber
       meld
-      delta
       gh
       graphite-cli
 
@@ -202,12 +201,17 @@
         init.defaultBranch = "master";
         user.email = "${config.common.email}";
         user.name = "${config.common.name}";
-
-        core.pager = "delta";
-        interactive.diffFilter = "delta --color-only";
-        delta.navigate = true;
-        delta.dark = true;
         merge.conflictstyle = "zdiff3";
+      };
+    };
+
+    programs.delta = {
+      enable = true;
+      enableGitIntegration = true;
+      enableJujutsuIntegration = true;
+      options = {
+        navigate = true;
+        dark = true;
       };
     };
 
@@ -219,6 +223,8 @@
         ui.editor = "hx";
       };
     };
+
+    programs.jjui.enable = true;
 
     programs.home-manager.enable = true;
   };
