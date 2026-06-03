@@ -57,6 +57,7 @@
 
       ## dev: analysis
       binwalk
+      nix-diff
       nix-tree
 
       ## dev: change mgmt
