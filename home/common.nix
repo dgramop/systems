@@ -62,6 +62,7 @@
 
       ## dev: change mgmt
       dgramop.branch
+      jj-spr
       amber
       meld
       gh
