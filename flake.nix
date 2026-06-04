@@ -124,7 +124,7 @@
 
     overlays.default = (final: prev: {
       gnuradio = nixpkgs-unstable.legacyPackages.${prev.system}.gnuradio;
-      jj-spr = jj-spr.outputs.defaultPackage.${prev.system};
+      jj_spr = jj-spr.outputs.defaultPackage.${prev.system};
       dgramop = {
         checker_frontend = checker_frontend.outputs.packages.${prev.system}.default;
         checker_backend = checker_backend.outputs.packages.${prev.system}.default;
