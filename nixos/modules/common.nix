@@ -22,6 +22,7 @@
       # Process monitoring
       htop
       btop
+      psmisc
 
       # Search
       ripgrep
