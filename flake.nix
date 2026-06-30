@@ -130,6 +130,7 @@
         checker_backend = checker_backend.outputs.packages.${prev.system}.default;
         dgramop_frontend = dgramop_frontend.outputs.packages.${prev.system}.default;
         branch = branch.outputs.defaultPackage.${prev.system};
+        branchd = branch.outputs.packages.${prev.system}.branchd;
         oncall = oncall.outputs.defaultPackage.${prev.system};
       };
     });
