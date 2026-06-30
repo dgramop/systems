@@ -9,11 +9,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1782079922,
-        "narHash": "sha256-wi7CJbw6AYwE1H46wOSETDNlDo6mQ5BAOJNyuUZbN2s=",
+        "lastModified": 1782790224,
+        "narHash": "sha256-vAJcn8F5Z0UneThj7NsjatchLMdfX2YpGnZYf+XTEeo=",
         "owner": "dgramop-specter",
         "repo": "branch",
-        "rev": "1cdc5cd5183563bc506f60faa76067b725bb4de2",
+        "rev": "cb392e1fd0e79882811cdc0478543707aeffb1e8",
         "type": "github"
       },
       "original": {
