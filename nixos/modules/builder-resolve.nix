@@ -69,6 +69,9 @@ in {
         ProgramArguments = [ "${script}/bin/builder-resolve" ];
         StartInterval = cfg.interval;
         RunAtLoad = true;
+        LaunchEvents."com.apple.notifyd.matching"."network-change" = {
+          Notification = "com.apple.system.config.network_change";
+        };
         StandardOutPath = "/var/log/builder-resolve.log";
         StandardErrorPath = "/var/log/builder-resolve.log";
       };
