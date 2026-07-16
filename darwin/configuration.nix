@@ -1,6 +1,16 @@
 { pkgs, self, ... }:
 
 {
+  imports = [ ../nixos/modules/builder-resolve.nix ];
+
+  dgramop.builder-resolve = {
+    enable = true;
+    hosts = {
+      nuc   = { primary = "10.111.3.128"; fallback = "192.168.8.215"; };
+      asahi = { primary = "10.111.3.114"; fallback = "192.168.8.206"; };
+    };
+  };
+
   # Use Determinate Systems nix — don't let nix-darwin manage nix.conf
   nix.enable = false;
 
