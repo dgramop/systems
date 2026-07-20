@@ -95,7 +95,7 @@
         weekend 90
         today 1;30;42'';
 
-    } // lib.mkIf pkgs.isLinux {
+    } // lib.mkIf pkgs.stdenv.isLinux {
         ".config/i3/config".text = ./i3.conf.nix { alacritty = pkgs.alacritty; rofi = pkgs.rofi; flameshot = pkgs.flameshot; };
     };
 
