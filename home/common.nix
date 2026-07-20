@@ -72,6 +72,8 @@
       picocom
       _1password-cli
 
+    ] ++ lib.optionals pkgs.stdenv.isDarwin [
+      nixos-rebuild
     ];
     home.stateVersion = "25.11";
 
