@@ -96,7 +96,7 @@
         today 1;30;42'';
 
     } // lib.mkIf pkgs.isLinux {
-        ".config/i3/config".text = ./i3.conf.nix { alacritty = pkgs.alacritty; rofi = pkgs.rofi; flameshot = pkgs.flameshot; }; };
+        ".config/i3/config".text = ./i3.conf.nix { alacritty = pkgs.alacritty; rofi = pkgs.rofi; flameshot = pkgs.flameshot; };
     };
 
     home.sessionVariables = {
