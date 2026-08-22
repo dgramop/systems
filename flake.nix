@@ -89,14 +89,6 @@
       ];
     };
 
-    nixosConfigurations.dgramop-apps = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      modules = [
-        overlayer
-        ./nixos/machines/servers/dgramop-apps/configuration.nix
-      ];
-    };
-
     nixosConfigurations.dgramop-ovh = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
