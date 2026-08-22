@@ -7,11 +7,13 @@
   config = lib.mkIf config.services.dgramop-frontpage.enable {
     security.acme.defaults.email = "dgramopadhye@gmail.com";
     security.acme.acceptTerms = true;
+    security.acme.extraDomainNames = ["dhruv.now"];
     services.nginx.enable = true;
     services.nginx.virtualHosts."dgramop.xyz" = {
       # Enable SSL/TLS
       enableACME = true;
       forceSSL = true;
+      serverAliases = ["dhruv.now"];
     
       # Document root
       root = "${pkgs.dgramop.dgramop_frontend}/www";
