@@ -14,6 +14,7 @@
       # Enable SSL/TLS
       enableACME = true;
       forceSSL = true;
+      serverAliases =  ["mix.dhruv.now"];
     
       # Document root
       root = "${pkgs.dgramop.checker_frontend}/www";
