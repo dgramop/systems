@@ -34,6 +34,7 @@
     systemd.services.checker = {
       description = "MIX Checker Backend";
       enable = true;
+      wantedBy = ["multi-user.target"];
       serviceConfig = {
         User = "checker";
         Group = "checker";
