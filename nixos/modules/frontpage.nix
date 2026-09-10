@@ -13,16 +13,22 @@
       enableACME = true;
       forceSSL = true;
       serverAliases = ["dhruv.now" "www.dhruv.now" "www.dgramop.xyz"];
-    
+
       # Document root
       root = "${pkgs.dgramop.dgramop_frontend}/www";
-    
+
       # Locations configuration
       locations."/" = {
         # Serve files, fall back to index.html (SPA pattern)
         tryFiles = "$uri $uri/ /index.html";
         index = "index.html";
       };
+    };
+
+    services.nginx.virtualHosts."pay.dhruv.now" = {
+      enableACME = true;
+      forceSSL = true;
+      locations."/".return = "302 https://account.venmo.com/u/dgramop";
     };
   };
 }
