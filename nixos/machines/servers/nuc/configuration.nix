@@ -21,6 +21,26 @@
 
   networking.hostName = "nuc"; # Define your hostname.
   networking.networkmanager.enable = true;
+  # Let systemd-networkd own the LAN-side ethernet; NM keeps wifi.
+  networking.networkmanager.unmanaged = [ "interface-name:enp86s0" ];
+
+  systemd.network.enable = true;
+  systemd.network.networks."10-lan" = {
+    matchConfig.Name = "enp86s0";
+    address = [ "10.111.3.128/8" ];
+    networkConfig = {
+      IPv6AcceptRA = false;
+      LinkLocalAddressing = "no";
+    };
+    linkConfig.RequiredForOnline = "no";
+  };
+
+  # NAT devices on the wired LAN out through the wifi uplink.
+  networking.nat = {
+    enable = true;
+    externalInterface = "wlo1";
+    internalInterfaces = [ "enp86s0" ];
+  };
   time.timeZone = "America/Los_Angeles";
   i18n.defaultLocale = "en_CA.UTF-8";
 
@@ -68,6 +88,8 @@
       ];
     };
   };
+
+  services.tailscale.enable = true;
 
   networking.firewall.allowedUDPPorts = [ 53 ];
 
