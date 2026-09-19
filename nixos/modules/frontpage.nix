@@ -30,6 +30,18 @@
       forceSSL = true;
       locations."/".return = "302 https://account.venmo.com/u/dgramop";
     };
+
+    services.nginx.virtualHosts."m.dgramop.xyz" = {
+      enableACME = true;
+      forceSSL = true;
+      locations."/".return = "302 https://dhruv.now";
+    };
+
+    services.nginx.virtualHosts."powercontest.org" = {
+      enableACME = true;
+      forceSSL = true;
+      locations."/".return = "302 https://dhruv.now";
+    };
   };
 }
 
