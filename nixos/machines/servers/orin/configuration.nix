@@ -36,6 +36,20 @@
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
 
+  # Wired LAN: static on the 10.111.3.0/24 subnet behind nuc (which does NAT + DNS).
+  # NM keeps wifi (wlP1p1s0); systemd-networkd owns the ethernet.
+  networking.networkmanager.unmanaged = [ "interface-name:enP8p1s0" ];
+  systemd.network.enable = true;
+  systemd.network.networks."10-lan" = {
+    matchConfig.Name = "enP8p1s0";
+    address = [ "10.111.3.136/16" ];
+    networkConfig = {
+      IPv6AcceptRA = false;
+      LinkLocalAddressing = "no";
+    };
+    linkConfig.RequiredForOnline = "no";
+  };
+
   nix.extraOptions = ''
     experimental-features = nix-command flakes
   '';
