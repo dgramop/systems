@@ -11,6 +11,9 @@
     jetpack.url = "github:anduril/jetpack-nixos/master";
     jetpack.inputs.nixpkgs.follows = "nixpkgs";
 
+    rg552-nixos.url = "github:dgramop/rg552-nixos";
+    rg552-nixos.inputs.nixpkgs.follows = "nixpkgs";
+
     home-manager.url = "github:nix-community/home-manager?ref=release-25.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -32,7 +35,7 @@
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs-unstable";
   };
 
-  outputs = {self, nixpkgs, nixpkgs-unstable, flake-utils, jetpack, home-manager, checker_backend, checker_frontend, dgramop_frontend, disko, branch, nix-darwin, jj-spr}: flake-utils.lib.eachDefaultSystem (system: let
+  outputs = {self, nixpkgs, nixpkgs-unstable, flake-utils, jetpack, home-manager, checker_backend, checker_frontend, dgramop_frontend, disko, branch, nix-darwin, jj-spr, rg552-nixos}: flake-utils.lib.eachDefaultSystem (system: let
     pkgs = import nixpkgs {
       inherit system;
       config.allowUnfree = true;
@@ -83,6 +86,15 @@
       modules = [
         overlayer
         ./nixos/machines/servers/nuc/configuration.nix
+      ];
+    };
+
+    nixosConfigurations.rg552 = nixpkgs.lib.nixosSystem {
+      system = "aarch64-linux";
+      specialArgs = { inherit rg552-nixos; };
+      modules = [
+        overlayer
+        ./nixos/machines/handhelds/rg552/configuration.nix
       ];
     };
 

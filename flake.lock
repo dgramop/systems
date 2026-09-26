@@ -539,6 +539,26 @@
         "type": "github"
       }
     },
+    "rg552-nixos": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1790319577,
+        "narHash": "sha256-aPhflw8fuqAV/oRCt4oAdYJ6qASAJgcheHdyE8MwFkw=",
+        "owner": "dgramop",
+        "repo": "rg552-nixos",
+        "rev": "caf139e73c49c135c465d0c93284bf2d88bf2d32",
+        "type": "github"
+      },
+      "original": {
+        "owner": "dgramop",
+        "repo": "rg552-nixos",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "branch": "branch",
@@ -552,7 +572,8 @@
         "jj-spr": "jj-spr",
         "nix-darwin": "nix-darwin",
         "nixpkgs": "nixpkgs_3",
-        "nixpkgs-unstable": "nixpkgs-unstable"
+        "nixpkgs-unstable": "nixpkgs-unstable",
+        "rg552-nixos": "rg552-nixos"
       }
     },
     "rust-analyzer-src": {
