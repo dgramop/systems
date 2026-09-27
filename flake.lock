@@ -539,27 +539,6 @@
         "type": "github"
       }
     },
-    "releases": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ],
-        "rg552-nixos-2026_09_26": "rg552-nixos-2026_09_26"
-      },
-      "locked": {
-        "lastModified": 1790469501,
-        "narHash": "sha256-oHAKBckoLb89bQSZtqKYJXvnxieNvKFZE1vmaDqeoy4=",
-        "owner": "dgramop",
-        "repo": "releases",
-        "rev": "7fed3051b182dbe82c1fde9626ca0d472f9ff357",
-        "type": "github"
-      },
-      "original": {
-        "owner": "dgramop",
-        "repo": "releases",
-        "type": "github"
-      }
-    },
     "rg552-nixos": {
       "inputs": {
         "nixpkgs": [
@@ -580,28 +559,6 @@
         "type": "github"
       }
     },
-    "rg552-nixos-2026_09_26": {
-      "inputs": {
-        "nixpkgs": [
-          "releases",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1790319577,
-        "narHash": "sha256-aPhflw8fuqAV/oRCt4oAdYJ6qASAJgcheHdyE8MwFkw=",
-        "owner": "dgramop",
-        "repo": "rg552-nixos",
-        "rev": "caf139e73c49c135c465d0c93284bf2d88bf2d32",
-        "type": "github"
-      },
-      "original": {
-        "owner": "dgramop",
-        "ref": "releases/2026_09_26",
-        "repo": "rg552-nixos",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
         "branch": "branch",
@@ -616,7 +573,6 @@
         "nix-darwin": "nix-darwin",
         "nixpkgs": "nixpkgs_3",
         "nixpkgs-unstable": "nixpkgs-unstable",
-        "releases": "releases",
         "rg552-nixos": "rg552-nixos"
       }
     },
