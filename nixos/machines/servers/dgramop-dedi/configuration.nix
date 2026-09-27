@@ -15,12 +15,14 @@ in
     ../../../modules/common.nix
     ../../../modules/checker.nix
     ../../../modules/frontpage.nix
+    ../../../modules/releases.nix
     ../../../modules/null-black
   ];
 
   dgramop.common.enable = true;
   services.dgramop-checker.enable = true;
   services.dgramop-frontpage.enable = true;
+  services.dgramop-releases.enable = true;
   services.null-black.enable = true;
 
   boot.loader.grub.enable = true;

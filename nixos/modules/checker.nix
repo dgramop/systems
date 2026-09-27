@@ -41,6 +41,8 @@
         Group = "checker";
         ExecStart = "${pkgs.dgramop.checker_backend}/bin/checker";
         WorkingDirectory = "/etc/dgramop/checker";
+        Restart = "on-failure";
+        RestartSec = "5s";
       };
       environment = {
         ROCKET_ENV="prod";
