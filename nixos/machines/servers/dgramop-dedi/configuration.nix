@@ -27,6 +27,7 @@ in
 
   boot.loader.grub.enable = true;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.trusted-users = [ "dgramop" ];
 
   # Nocix /29 block: 142.54.183.104/29
   # .104 network, .105 gateway, .106 primary, .107-.110 usable, .111 broadcast
