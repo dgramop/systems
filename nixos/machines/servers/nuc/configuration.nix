@@ -9,6 +9,7 @@
     ./hardware-configuration.nix
     ../../../modules/common.nix
     ../../../modules/desktop.nix
+    ../../../modules/tailscale-ssh.nix
   ];
 
   dgramop.common.enable = true;
@@ -77,7 +78,11 @@
     enable = true;
     settings = {
       listen-address = "127.0.0.1,10.111.3.128";
-      bind-interfaces = true;
+      # Not bind-interfaces: that needs 10.111.3.128 to already exist, and
+      # dnsmasq loses the race against systemd-networkd on boot, then trips the
+      # restart rate limit and stays dead. bind-dynamic picks the address up
+      # when it appears; listen-address still keeps us off the wifi uplink.
+      bind-dynamic = true;
 
       server = [ "192.168.8.1" ];
 

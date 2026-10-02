@@ -5,7 +5,7 @@
   ...
 } @ args:
 let
- key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCljmP0GXaGu97J/vOE5kvlKZt262sqx2ADiN0Glt5dMjiP4ubQLmC4vUr4rajV/n1JcTJzp12LSNmIVUQKLZgxLpwKhk7W7EAElT2rCMj6Yr1c2P5B34nGCyDYPjMWahupkZafLHze9zWxtkH+fHicH4GtOXMW4R9nZycwqtefAUsWBSbG023rYgzO9lUz8ZPb846CgwxWdtDoOdf15O58IrRfrWF3QKzWErli3OZ5K4cu70D55xCyGG9+Gpozf1u0kTF80jCb24TNr2CELEo8rqVXmJeVqA5LO1g5putLzzeTt8XL6tBjT2Wu0eQAAVOODee51QXCQ8dM29HaT7rbodeWEBrfAIY0V8FsjGQSpQv0VmcDzTyQH7Se29Pd6kPYP8M3VjPoTK+RMHSOdgTPY7iAgUo5c5qhs4DA3vXI+CgaEopL3AiKOtycYOhkMB/HGcQZiZ126BCRlr7exeM7d5/XQsNjhuLjyAnOxsWNA8DI0IvmRflakka2gVqEYRk=";
+ key = builtins.readFile ../../../keys/dgramop.pub;
 in
 {
   imports = [
@@ -16,11 +16,13 @@ in
     ../../../modules/checker.nix
     ../../../modules/frontpage.nix
     ../../../modules/releases.nix
+    ../../../modules/passcs.nix
     ../../../modules/null-black
   ];
 
   dgramop.common.enable = true;
   services.dgramop-checker.enable = true;
+  services.dgramop-passcs.enable = true;
   services.dgramop-frontpage.enable = true;
   services.dgramop-releases.enable = true;
   services.null-black.enable = true;
@@ -43,6 +45,10 @@ in
     routes = [
       { Gateway = "142.54.183.105"; }
     ];
+    # The upstream switch only learns this host's MAC, so guest addresses from
+    # the /29 are routed through the host rather than bridged; the host has to
+    # answer the gateway's ARP for them.
+    networkConfig.IPv4ProxyARP = true;
     linkConfig.RequiredForOnline = "routable";
   };
 
@@ -51,6 +57,33 @@ in
     matchConfig.Name = "enp5s0f0";
     linkConfig.RequiredForOnline = "no";
   };
+
+  systemd.network.config.networkConfig.IPv4Forwarding = true;
+
+  systemd.network.netdevs."br-vm".netdevConfig = {
+    Name = "br-vm";
+    Kind = "bridge";
+  };
+
+  # Private host<->guest link, and the routes that carry each guest's public
+  # address over it.
+  systemd.network.networks."30-br-vm" = {
+    matchConfig.Name = "br-vm";
+    address = [ "10.100.0.1/24" ];
+    routes = [
+      { Destination = "142.54.183.107/32"; Gateway = "10.100.0.2"; }
+    ];
+    linkConfig.RequiredForOnline = "no";
+  };
+
+  systemd.network.networks."40-vm-taps" = {
+    matchConfig.Name = "vm-*";
+    networkConfig.Bridge = "br-vm";
+    linkConfig.RequiredForOnline = "no";
+  };
+
+  microvm.host.enable = true;
+  microvm.vms.vm1.config = import ../../vms/vm1/configuration.nix;
 
   services.openssh.enable = true;
 

@@ -8,6 +8,9 @@
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
 
+    microvm.url = "github:astro/microvm.nix";
+    microvm.inputs.nixpkgs.follows = "nixpkgs";
+
     jetpack.url = "github:anduril/jetpack-nixos/master";
     jetpack.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -25,6 +28,13 @@
     dgramop_frontend.url = "github:dgramop/dgramop";
     dgramop_frontend.inputs.nixpkgs.follows = "nixpkgs";
 
+    # submodules=1 pulls in templates/raw_templates/new-passcs-frontend, which the
+    # email template derivation reads from.
+    passcs_backend.url = "github:dgramop/passcs-backend?submodules=1";
+    passcs_backend.inputs.nixpkgs.follows = "nixpkgs";
+    passcs_frontend.url = "github:dgramop/passcs-frontend";
+    passcs_frontend.inputs.nixpkgs.follows = "nixpkgs";
+
     branch.url = "github:dgramop-specter/branch";
     branch.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -35,7 +45,7 @@
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs-unstable";
   };
 
-  outputs = {self, nixpkgs, nixpkgs-unstable, flake-utils, jetpack, home-manager, checker_backend, checker_frontend, dgramop_frontend, disko, branch, nix-darwin, jj-spr, rg552-nixos}: flake-utils.lib.eachDefaultSystem (system: let
+  outputs = {self, nixpkgs, nixpkgs-unstable, flake-utils, jetpack, home-manager, checker_backend, checker_frontend, dgramop_frontend, passcs_backend, passcs_frontend, disko, microvm, branch, nix-darwin, jj-spr, rg552-nixos}: flake-utils.lib.eachDefaultSystem (system: let
     pkgs = import nixpkgs {
       inherit system;
       config.allowUnfree = true;
@@ -98,11 +108,28 @@
       ];
     };
 
+    # Same system as rg552, plus the image-packaging layer. The sd-image module
+    # wants `uboot` as a specialArg, and it must be the x86_64 build because it
+    # pulls in rkbin.
+    nixosConfigurations.rg552-sdimage = nixpkgs.lib.nixosSystem {
+      system = "aarch64-linux";
+      specialArgs = {
+        inherit rg552-nixos;
+        uboot = rg552-nixos.packages.x86_64-linux.uboot;
+      };
+      modules = [
+        overlayer
+        rg552-nixos.nixosModules.sd-image
+        ./nixos/machines/handhelds/rg552/configuration.nix
+      ];
+    };
+
     nixosConfigurations.dgramop-dedi = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
         overlayer
         disko.nixosModules.disko
+        microvm.nixosModules.host
         ./nixos/machines/servers/dgramop-dedi/configuration.nix
       ];
     };
@@ -121,6 +148,8 @@
         checker_frontend = checker_frontend.outputs.packages.${prev.system}.default;
         checker_backend = checker_backend.outputs.packages.${prev.system}.default;
         dgramop_frontend = dgramop_frontend.outputs.packages.${prev.system}.default;
+        passcs_backend = passcs_backend.outputs.packages.${prev.system}.default;
+        passcs_frontend = passcs_frontend.outputs.packages.${prev.system}.default;
         branch = branch.outputs.defaultPackage.${prev.system};
         branchd = branch.outputs.packages.${prev.system}.branchd;
       };
